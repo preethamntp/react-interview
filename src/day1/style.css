@@ -1,0 +1,16 @@
+.main {
+  margin: auto;
+  width: 25%;
+}
+
+#card {
+  height: 150px;
+  width: 220px;
+  display: flex;
+  justify-content: center;
+  color: black;
+  background: #91eb91;
+  border: 1px solid black;
+  align-items: center;
+  margin: 15px;
+}
