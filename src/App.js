@@ -1,23 +1,48 @@
-import logo from './logo.svg';
+import { useEffect, useRef, useState } from 'react';
 import './App.css';
 
 function App() {
+  const [count, setCount] = useState(0);
+  const [running, setRunning] = useState(false);
+  const timerRef = useRef(null);
+
+
+  useEffect(() => {
+    if (running) {
+      timerRef.current = setTimeout(() => {
+        setCount(prev => prev + 1)
+      }, 1000);
+    } return () => clearTimeout(timerRef.current)
+  }, [count, running])
+
+
+  const handleClick = () => {
+    // using setTimeout in useEffect
+    setRunning((prev) => !prev);
+    if (running) {
+      clearInterval(timerRef.current)
+    }
+
+  }
+  /**  const handleClick = () => {
+      setRunning((prev) => !prev);
+      if (running) {
+        clearInterval(timerRef.current)
+      } else {
+        timerRef.current = setInterval(() => {
+          setCount((prev) => prev + 1)
+        }, 1000);
+      }
+    }
+   */
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h2>Per second timer {count}</h2>
+      <button onClick={handleClick}>
+        {running ? "Stop" : "Start"}
+      </button>
+      <button onClick={() => setCount(0)}>Reset</button>
     </div>
   );
 }
