@@ -36,3 +36,32 @@
     transform: rotate(360deg);
   }
 }
+#step {
+  background-color: grey;
+  color: white;
+  padding: 0.5rem;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+}
+
+#step-wrapper {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  margin: 2rem;
+}
+
+#progress {
+  display: block;
+  height: 5px;
+  position: absolute;
+  background-color: orangered;
+  top: 100px;
+  left: 50px;
+  z-index: -1;
+}
+
+.active {
+  background-color: orangered !important;
+}
