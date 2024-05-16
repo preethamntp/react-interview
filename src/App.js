@@ -1,23 +1,26 @@
-import logo from './logo.svg';
+import { useState } from 'react';
 import './App.css';
+import useCustomMemo from './customUseMemo';
+
+
+const add = (a, b) => {
+  console.log('add');
+  return a + b
+};
 
 function App() {
+  const [count, setCount] = useState(0);
+  const [count2, setCount2] = useState(10);
+
+  const expensiveCalc = useCustomMemo(() => add(count), [count])
+  console.log('re-render');
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {count} = {expensiveCalc}
+      <button onClick={() => setCount(count + 1)}>Increment</button>
+      <button onClick={() => setCount2(count2 - 1)}>Decrement</button>
+
     </div>
   );
 }
