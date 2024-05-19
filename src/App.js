@@ -1,23 +1,35 @@
 import logo from './logo.svg';
 import './App.css';
+import { useEffect, useState } from 'react';
 
 function App() {
+
+  const [count, setCount] = useState(0)
+  const [isPaused, setIsPaused] = useState(false)
+
+  useEffect(() => {
+    if (count >= 1000 || isPaused) { return };
+    let counter = setInterval(() => {
+      setCount(prevCount => prevCount + 1)
+    }, 1)
+    return () => clearInterval(counter)
+  }, [count, isPaused])
+
+
+  const resetHandler = () => {
+    setCount(0)
+  }
+
+  const handlePause = () => {
+    setIsPaused(prevState => !prevState);
+
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      Counter: {count} <br />
+      <button onClick={resetHandler}>Reset</button>
+      <button onClick={handlePause}>{isPaused ? "Resume" : "Pause"}</button>
     </div>
   );
 }
