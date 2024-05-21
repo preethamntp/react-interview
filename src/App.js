@@ -1,25 +1,28 @@
-import logo from './logo.svg';
 import './App.css';
+import { useState } from 'react';
+import useTimeout from './useSetTimeout';
 
 function App() {
+  const [inputValue, setInputValue] = useState('');
+  const [debouncedValue, setDebouncedValue] = useState('');
+
+  // This function will be called after the specified delay
+  const handleOnChange = () => {
+    setDebouncedValue(inputValue)
+  };
+
+  // Using the useTimeout hook
+  useTimeout(handleOnChange, 500, inputValue); // 2000 milliseconds or 2 seconds
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h2> Add Delay / DeBounce</h2>
+
+      <input type='text' value={inputValue} onChange={(e) => setInputValue(e.target.value)} />
+      <p>{debouncedValue}</p>
     </div>
   );
+
 }
 
 export default App;
