@@ -7,6 +7,10 @@
   pointer-events: none;
 }
 
+.App:nth-child(odd) {
+  color: red;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
@@ -26,6 +30,31 @@
 
 .App-link {
   color: #61dafb;
+}
+
+ul {
+  display: "flex";
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  display: flex;
+  margin-right: 10px;
+  cursor: pointer;
+  color: #282c34;
+  padding: 5px;
+  gap: 20px;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  color: #282c34;
+}
+
+.completed {
+  text-decoration: line-through;
+  color: red;
 }
 
 @keyframes App-logo-spin {
