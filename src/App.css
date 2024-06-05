@@ -7,10 +7,20 @@
   pointer-events: none;
 }
 
+.field .sum input,
+select,
+textarea {
+  color: blue;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
   }
+}
+
+.completed {
+  text-decoration: line-through;
 }
 
 .App-header {
