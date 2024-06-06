@@ -25,14 +25,14 @@ function App() {
   }
 
 
-  useEffect(() => {
+  // useEffect(() => {
 
-    getTodos().then(data => {
-      setTodos(data)
-    })
+  //   getTodos().then(data => {
+  //     setTodos(data)
+  //   })
 
 
-  }, [])
+  // }, [])
 
   const handleDelete = (id) => {
 
